@@ -1,332 +1,87 @@
-<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Analysis System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a2a6c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        /* Glassmorphism effect for the form container */
-        .form-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-container:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5);
-        }
-        
-        /* Floating animation for images */
-        .floating-img {
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 15px rgba(0, 0, 0, 0.4));
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Custom input styling */
-        .custom-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .custom-input:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #8A2BE2; /* A vibrant purple */
-            outline: none;
-        }
-
-        /* Custom button styling */
-        .custom-btn {
-            background: linear-gradient(45deg, #8A2BE2, #4B0082); /* Purple gradient */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .custom-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(138, 43, 226, 0.4);
-        }
-        
-        /* Background shapes */
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.2));
-            filter: blur(50px);
-        }
-        .shape1 {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 10%;
-            animation: moveShape 20s infinite alternate;
-        }
-        .shape2 {
-            width: 300px;
-            height: 300px;
-            bottom: 5%;
-            right: 15%;
-            animation: moveShape 25s infinite alternate-reverse;
-        }
-
-        @keyframes moveShape {
-            from {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            to {
-                transform: translate(100px, 50px) rotate(180deg);
-            }
-        }
-    </style>
-</head>
-
-<body class="min-h-screen flex flex-col text-white">
-    <div class="shape shape1"></div>
-    <div class="shape shape2"></div>
-    <!-- Header -->
-    <header class="py-4 z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <h1 class="text-center text-3xl md:text-4xl font-bold tracking-wider">
-                Result Analysis System
-            </h1>
-        </div>
-    </header>
-
-    <!-- Main content area -->
-    <main class="flex flex-col md:flex-row justify-center items-center flex-grow max-w-7xl w-full mx-auto p-4 gap-8 md:gap-16 z-10">
-        
-        <!-- Left image -->
-        <div class="hidden md:block flex-shrink-0">
-            <img alt="3D illustration of data analysis with graphs and charts" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/0b89d541-438d-49d2-fa21-6cba80db6bd7.jpg">
-        </div>
-
-        <!-- Sign In/Create Account Box -->
-        <div id="auth-container" class="form-container rounded-2xl p-8 w-full max-w-sm">
-            <!-- Login Form will be injected here by default -->
-        </div>
-
-        <!-- Right image -->
-        <div class="hidden md:block flex-shrink-0">
-            <img alt="3D illustration of a colorful pie chart" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/21d6b65a-ff0a-43b1-7c3f-446a208391bf.jpg">
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-4 z-10">
-        <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
-            <nav class="inline-flex gap-6">
-                <a class="hover:text-white transition-colors" href="#">Home</a>
-                <a class="hover:text-white transition-colors" href="#">About Us</a>
-                <a class="hover:text-white transition-colors" href="#">Contact</a>
-            </nav>
-            <p class="mt-2">&copy; 2025 Result Analysis System. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const authContainer = document.getElementById('auth-container');
-
-            // --- USER DATA MANAGEMENT ---
-            const demoUsers = [
-                { username: 'hod', password: 'hod123', role: 'hod', name: 'Dr. Smith', email: 'hod@example.com' },
-                { username: 'staff', password: 'staff123', role: 'staff', name: 'Prof. Jones', email: 'staff@example.com' }
-            ];
-
-            if (!localStorage.getItem('users')) {
-                localStorage.setItem('users', JSON.stringify(demoUsers));
-            }
-
-            function getUsers() {
-                return JSON.parse(localStorage.getItem('users')) || [];
-            }
-
-            function saveUser(user) {
-                const users = getUsers();
-                users.push(user);
-                localStorage.setItem('users', JSON.stringify(users));
-            }
-            
-            // --- UI TEMPLATES ---
-
-            const loginFormHTML = `
-                <form id="login-form" class="flex flex-col gap-4">
-                    <h2 class="text-center font-bold text-2xl mb-4">Sign In</h2>
-                    <div class="text-center font-semibold mb-2">
-                        <span class="mr-4">Login As:</span>
-                        <label class="inline-flex items-center">
-                            <input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="hod" checked required />
-                            <span class="ml-2">HOD</span>
-                        </label>
-                        <label class="inline-flex items-center ml-4">
-                            <input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="staff" required />
-                            <span class="ml-2">Staff</span>
-                        </label>
-                    </div>
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Enter username" type="text" required />
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Enter password" type="password" required />
-                    <button class="custom-btn text-white font-bold py-2 px-4 rounded-lg mt-2" type="submit">Login</button>
-                    <p class="text-center text-xs mt-2 text-gray-300">
-                        Don't have an account? <a href="#" id="show-create-account" class="font-semibold text-purple-300 hover:underline">Create one</a>
-                    </p>
-                </form>
-            `;
-
-            const createAccountFormHTML = `
-                <form id="create-account-form" class="flex flex-col gap-3">
-                    <h2 class="text-center font-bold text-2xl mb-2">Create Account</h2>
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Username" type="text" required />
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Password" type="password" required />
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Full Name" type="text" required />
-                    <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Email Address" type="email" required />
-                    <div class="text-center font-semibold my-1">
-                        <span class="mr-4">Register As:</span>
-                        <label class="inline-flex items-center">
-                            <input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="hod" required />
-                            <span class="ml-2">HOD</span>
-                        </label>
-                        <label class="inline-flex items-center ml-4">
-                            <input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="staff" required />
-                            <span class="ml-2">Staff</span>
-                        </label>
-                    </div>
-                    <button class="custom-btn text-white font-bold py-2 px-4 rounded-lg mt-2" type="submit">Create Account</button>
-                    <p class="text-center text-xs mt-2 text-gray-300">
-                        Already have an account? <a href="#" id="show-login" class="font-semibold text-purple-300 hover:underline">Sign In</a>
-                    </p>
-                </form>
-            `;
-            
-            // --- UI LOGIC ---
-
-            function showLoginForm() {
-                authContainer.innerHTML = loginFormHTML;
-                document.getElementById('login-form').addEventListener('submit', handleLogin);
-                document.getElementById('show-create-account').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showCreateAccountForm();
-                });
-            }
-
-            function showCreateAccountForm() {
-                authContainer.innerHTML = createAccountFormHTML;
-                document.getElementById('create-account-form').addEventListener('submit', handleCreateAccount);
-                document.getElementById('show-login').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showLoginForm();
-                });
-            }
-
-            // --- EVENT HANDLERS ---
-            function showMessage(message, isError = false) {
-                // A simple, non-blocking message display
-                const messageBox = document.createElement('div');
-                messageBox.textContent = message;
-                messageBox.className = `fixed top-5 right-5 p-4 rounded-lg text-white z-50 ${isError ? 'bg-red-500' : 'bg-green-500'}`;
-                document.body.appendChild(messageBox);
-                setTimeout(() => {
-                    messageBox.style.transition = 'opacity 0.5s';
-                    messageBox.style.opacity = '0';
-                    setTimeout(() => messageBox.remove(), 500);
-                }, 3000);
-            }
-
-
-            function handleLogin(e) {
-                e.preventDefault();
-                const form = e.target;
-                const username = form.querySelector('input[type="text"]').value.trim();
-                const password = form.querySelector('input[type="password"]').value;
-                const role = form.querySelector('input[name="loginAs"]:checked').value;
-                const users = getUsers();
-                const user = users.find(u => u.username === username && u.password === password && u.role === role);
-
-                if (user) {
-                    showMessage('Login successful! Redirecting...');
-                    // In a real app, you'd redirect. We'll just show a message here.
-                    // window.location.href = 'dashboard.html';
-                } else {
-                    showMessage('Unauthorized: Invalid credentials or role.', true);
-                }
-            }
-
-            function handleCreateAccount(e) {
-                e.preventDefault();
-                const form = e.target;
-                const username = form.querySelector('input[placeholder="Username"]').value.trim();
-                const password = form.querySelector('input[type="password"]').value;
-                const name = form.querySelector('input[placeholder="Full Name"]').value.trim();
-                const email = form.querySelector('input[type="email"]').value.trim();
-                
-                if (!form.querySelector('input[name="registerAs"]:checked')) {
-                    showMessage('Please select a role to register as.', true);
-                    return;
-                }
-                const role = form.querySelector('input[name="registerAs"]:checked').value;
-
-                if (!username || !password || !name || !email || !role) {
-                    showMessage('Please fill all fields.', true);
-                    return;
-                }
-
-                if (getUsers().some(u => u.username === username)) {
-                    showMessage('Username already exists. Please choose another.', true);
-                    return;
-                }
-
-                saveUser({ username, password, name, email, role });
-                showMessage('Account created successfully! You can now log in.');
-                showLoginForm();
-            }
-
-            // --- INITIALIZE VIEW ---
-            showLoginForm();
-
-        });
-    </script>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Result Analysis System
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+ </head>
+ <body class="min-h-screen flex flex-col" style="position:relative; overflow:hidden;">
+  <!-- Animated RGB Gradient Video Background -->
+  <video autoplay loop muted playsinline id="bgvid" style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:0;filter:brightness(0.7) saturate(1.3) blur(1px);">
+    <source src="https://www.videvo.net/videvo_files/converted/2016_08/preview/160710A_107_RGB_Gradient_1080p.mp447892.webm" type="video/webm">
+    <source src="https://www.videvo.net/videvo_files/converted/2016_08/preview/160710A_107_RGB_Gradient_1080p.mp447892.mp4" type="video/mp4">
+    <!-- Fallback: If video doesn't load, show a gradient -->
+  </video>
+  <!-- Header -->
+  <header class="bg-gradient-to-b from-orange-400 to-orange-300 border-b border-gray-300" style="z-index:2; position:relative;">
+   <div class="max-w-7xl mx-auto py-3">
+    <h1 class="text-center text-2xl font-semibold italic text-[#004d40]" style="font-family: serif;">
+     Result Analysis System
+    </h1>
+   </div>
+  </header>
+  <!-- Subheader -->
+  <div class="text-center text-sm font-semibold text-gray-800 mt-2">
+   Exam Result
+  </div>
+  <!-- Main content area -->
+  <main class="flex flex-col md:flex-row justify-center items-center flex-grow max-w-7xl mx-auto mt-6 px-4 gap-10" style="z-index:2; position:relative;">
+   <!-- Left image -->
+   <div class="flex-shrink-0">
+    <img alt="3D white figure holding a large magnifying glass looking at a small bar graph with an upward blue arrow" class="w-[250px] h-[250px] object-contain floating-img" height="250" src="https://storage.googleapis.com/a1aa/image/0b89d541-438d-49d2-fa21-6cba80db6bd7.jpg" width="250"/>
+   </div>
+   <!-- Sign In box -->
+   <form class="bg-yellow-100 p-6 w-[280px] flex flex-col gap-3 border border-yellow-300" style="font-family: serif;">
+    <h2 class="text-center font-semibold text-sm mb-1">
+     Sign In
+    </h2>
+    <div class="text-xs font-semibold mb-2 text-center">
+     Login As:
+     <label class="inline-flex items-center ml-2">
+      <input checked="" class="form-radio text-gray-700" name="loginAs" type="radio" value="hod"/>
+      <span class="ml-1">
+       HOD
+      </span>
+     </label>
+     <label class="inline-flex items-center ml-2">
+      <input class="form-radio text-gray-700" name="loginAs" type="radio" value="staff"/>
+      <span class="ml-1">
+       Staff
+      </span>
+     </label>
+    </div>
+    <input class="border border-gray-300 text-xs px-2 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-400" placeholder="Enter username" type="text"/>
+    <input class="border border-gray-300 text-xs px-2 py-1 focus:outline-none focus:ring-1 focus:ring-yellow-400" placeholder="Enter password" type="password"/>
+    <button class="bg-[#5c4329] text-white text-xs font-semibold py-1 mt-1" type="submit">
+     Login
+    </button>
+   </form>
+   <!-- Right image -->
+   <div class="flex-shrink-0">
+    <img alt="3D colorful pie chart with vertical bar graphs and a magnifying glass focusing on a section" class="w-[250px] h-[250px] object-contain floating-img" height="250" src="https://storage.googleapis.com/a1aa/image/21d6b65a-ff0a-43b1-7c3f-446a208391bf.jpg" width="250"/>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gradient-to-b from-orange-400 to-orange-300 border-t border-gray-300 mt-10" style="z-index:2; position:relative;">
+   <div class="max-w-7xl mx-auto py-3 text-center text-xs font-semibold text-[#5c4329]" style="font-family: serif;">
+    <nav class="inline-flex gap-4">
+     <a class="hover:underline" href="#">
+      Home
+     </a>
+     <a class="hover:underline" href="#">
+      About Us
+     </a>
+     <a class="hover:underline" href="#">
+      Sign In
+     </a>
+    </nav>
+   </div>
+  </footer>
 </body>
-
+<script src="script.js"></script>
 </html>
