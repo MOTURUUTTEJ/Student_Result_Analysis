@@ -7,7 +7,9 @@
     <title>Result Analysis System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
+        /* General Body Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a2a6c);
@@ -15,24 +17,17 @@
             animation: gradientBG 15s ease infinite;
             position: relative;
             overflow-x: hidden;
+            color: white;
         }
 
         @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        
-        /* Glassmorphism effect for the form container */
-        .form-container {
+
+        /* --- LOGIN PAGE STYLES --- */
+        #login-section .form-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -40,182 +35,365 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .form-container:hover {
+        #login-section .form-container:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5);
         }
-        
-        /* Floating animation for images */
-        .floating-img {
+
+        #login-section .floating-img {
             animation: float 6s ease-in-out infinite;
             filter: drop-shadow(0 20px 15px rgba(0, 0, 0, 0.4));
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        /* Custom input styling */
-        .custom-input {
+        #login-section .custom-input {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: background 0.3s, border-color 0.3s;
         }
 
-        .custom-input:focus {
+        #login-section .custom-input:focus {
             background: rgba(255, 255, 255, 0.15);
-            border-color: #8A2BE2; /* A vibrant purple */
+            border-color: #8A2BE2;
             outline: none;
         }
 
-        /* Custom button styling */
-        .custom-btn {
-            background: linear-gradient(45deg, #8A2BE2, #4B0082); /* Purple gradient */
+        #login-section .custom-btn {
+            background: linear-gradient(45deg, #8A2BE2, #4B0082);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .custom-btn:hover {
+        #login-section .custom-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 7px 20px rgba(138, 43, 226, 0.4);
         }
-        
-        /* Background shapes */
-        .shape {
+
+        #login-section .shape {
             position: absolute;
             border-radius: 50%;
             background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.2));
             filter: blur(50px);
         }
-        .shape1 {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 10%;
+
+        #login-section .shape1 {
+            width: 200px; height: 200px; top: 10%; left: 10%;
             animation: moveShape 20s infinite alternate;
         }
-        .shape2 {
-            width: 300px;
-            height: 300px;
-            bottom: 5%;
-            right: 15%;
+
+        #login-section .shape2 {
+            width: 300px; height: 300px; bottom: 5%; right: 15%;
             animation: moveShape 25s infinite alternate-reverse;
         }
 
         @keyframes moveShape {
-            from {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            to {
-                transform: translate(100px, 50px) rotate(180deg);
-            }
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(100px, 50px) rotate(180deg); }
         }
+
+        /* --- DASHBOARD STYLES --- */
+        #dashboard-section {
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c3d52);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        #bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; opacity: 0.7;
+        }
+
+        .nav-anime ul li a { position: relative; transition: color 0.2s; }
+        .nav-anime ul li a::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899, #3b82f6, #c4b5fd, #93c5fd);
+            border-radius: 2px; transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(.4, 2, .6, 1);
+        }
+        .nav-anime ul li a:hover::after, .nav-anime ul li a:focus::after, .nav-anime ul li a.active::after {
+            transform: scaleX(1);
+        }
+        .header-3d { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+        .model-3d {
+            width: 48px; height: 48px;
+            animation: float3d 2.5s ease-in-out infinite alternate;
+            filter: drop-shadow(0 4px 16px #0008);
+        }
+        @keyframes float3d {
+            0% { transform: translateY(0) rotateY(0deg); }
+            100% { transform: translateY(-12px) rotateY(20deg); }
+        }
+        .dashboard-btn {
+            position: relative; overflow: hidden; border-radius: 0;
+            transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+            box-shadow: 0 6px 12px -2px rgba(0,0,0,0.2), 0 3px 7px -3px rgba(0,0,0,0.25);
+            opacity: 0; transform: perspective(1000px) translateY(30px) scale(0.95);
+            animation: fadeInUp 0.7s cubic-bezier(.4, 2, .6, 1) forwards;
+            transform-style: preserve-3d;
+        }
+        .dashboard-btn::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(168,85,247,0.8), rgba(236,72,153,0.8), rgba(59,130,246,0.8), transparent);
+            animation: rotate-glow 4s linear infinite;
+            opacity: 0; transition: opacity 0.4s ease; z-index: 1;
+        }
+        .dashboard-btn > div {
+            position: relative; z-index: 2; background-color: rgba(23, 23, 23, 0.6);
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transition: background-color 0.3s ease;
+        }
+        .dashboard-btn:hover::before { opacity: 1; }
+        .dashboard-btn:hover > div { background-color: rgba(23, 23, 23, 0.8); }
+        .dashboard-icon { transition: transform 0.3s ease, filter 0.3s ease; }
+        .dashboard-btn:hover .dashboard-icon {
+            transform: scale(1.1) translateY(-5px);
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+        }
+        .dashboard-btn:nth-child(1) { animation-delay: 0.05s; }
+        .dashboard-btn:nth-child(2) { animation-delay: 0.12s; }
+        .dashboard-btn:nth-child(3) { animation-delay: 0.19s; }
+        .dashboard-btn:nth-child(4) { animation-delay: 0.26s; }
+        .dashboard-btn:nth-child(5) { animation-delay: 0.33s; }
+        .dashboard-btn:nth-child(6) { animation-delay: 0.40s; }
+        .dashboard-btn:nth-child(7) { animation-delay: 0.47s; }
+        .dashboard-btn:nth-child(8) { animation-delay: 0.54s; }
+        @keyframes rotate-glow { 100% { transform: rotate(360deg); } }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: perspective(1000px) translateY(30px) scale(0.95); }
+            80% { opacity: 1; transform: perspective(1000px) translateY(-6px) scale(1.03); }
+            100% { opacity: 1; transform: perspective(1000px) translateY(0) scale(1); }
+        }
+        .dashboard-btn:hover {
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3), 0 6px 12px -6px rgba(0,0,0,0.35);
+        }
+        .page-content {
+             background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+             border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 0.5rem;
+             width: 100%; max-width: 42rem; color: white;
+        }
+        .page-content input, .page-content select, .page-content button {
+            background-color: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.2); color: white;
+        }
+        .page-content input::placeholder { color: rgba(255, 255, 255, 0.5); }
+        .page-content button { background-color: #8b5cf6; }
+        .page-content button:hover { background-color: #7c3aed; }
+        .page-content table { color: black; }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col text-white">
-    <div class="shape shape1"></div>
-    <div class="shape shape2"></div>
-    <!-- Header -->
-    <header class="py-4 z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <h1 class="text-center text-3xl md:text-4xl font-bold tracking-wider">
-                Result Analysis System
-            </h1>
-        </div>
-    </header>
+<body class="min-h-screen">
+    <!-- LOGIN/REGISTER SECTION -->
+    <div id="login-section" class="min-h-screen flex flex-col">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <header class="py-4 z-10">
+            <div class="max-w-7xl mx-auto px-4">
+                <h1 class="text-center text-3xl md:text-4xl font-bold tracking-wider">Result Analysis System</h1>
+            </div>
+        </header>
+        <main class="flex flex-col md:flex-row justify-center items-center flex-grow max-w-7xl w-full mx-auto p-4 gap-8 md:gap-16 z-10">
+            <div class="hidden md:block flex-shrink-0">
+                <img alt="3D illustration of data analysis with graphs and charts" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/0b89d541-438d-49d2-fa21-6cba80db6bd7.jpg">
+            </div>
+            <div id="auth-container" class="form-container rounded-2xl p-8 w-full max-w-sm">
+                <!-- Login/Create Account Form will be injected here -->
+            </div>
+            <div class="hidden md:block flex-shrink-0">
+                <img alt="3D illustration of a colorful pie chart" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/21d6b65a-ff0a-43b1-7c3f-446a208391bf.jpg">
+            </div>
+        </main>
+        <footer class="py-4 z-10">
+            <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
+                <nav class="inline-flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">Home</a>
+                    <a class="hover:text-white transition-colors" href="#">About Us</a>
+                    <a class="hover:text-white transition-colors" href="#">Contact</a>
+                </nav>
+                <p class="mt-2">&copy; 2025 Result Analysis System. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
 
-    <!-- Main content area -->
-    <main class="flex flex-col md:flex-row justify-center items-center flex-grow max-w-7xl w-full mx-auto p-4 gap-8 md:gap-16 z-10">
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard-section" class="min-h-screen flex-col" style="display: none;">
+        <canvas id="bg-canvas"></canvas>
+        <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 shadow-lg">
+            <div class="header-3d">
+                <svg class="model-3d" viewBox="0 0 64 64" fill="none">
+                    <ellipse cx="32" cy="20" rx="14" ry="14" fill="#a78bfa" /><rect x="18" y="34" width="28" height="20" rx="10" fill="#8b5cf6" />
+                    <ellipse cx="32" cy="54" rx="10" ry="4" fill="#c4b5fd" opacity=".7" /><ellipse cx="24" cy="18" rx="2" ry="3" fill="#fff" />
+                    <ellipse cx="40" cy="18" rx="2" ry="3" fill="#fff" /><ellipse cx="32" cy="26" rx="4" ry="2" fill="#fff" opacity=".5" />
+                </svg>
+                <h1 class="text-center text-white font-serif italic font-semibold text-lg select-none" style="font-style: italic; font-family: serif;">Result Analysis System</h1>
+            </div>
+        </header>
+        <nav class="bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg mx-auto mt-4 max-w-5xl w-[95%] px-2 py-1 flex flex-wrap items-center justify-between text-xs sm:text-sm nav-anime">
+            <ul class="flex flex-wrap gap-3 sm:gap-6 items-center text-white/90 font-semibold">
+                <li><a href="#dashboard">Home</a></li>
+                <li><a href="#result-analysis">Result Analysis</a></li>
+                <li><a href="#add-student">Add Student</a></li>
+                <li><a href="#student-report">Student Report</a></li>
+                <li><a href="#add-subjects">Add Subjects</a></li>
+                <li><a href="#subject-report">Subjects Report</a></li>
+                <li><a href="#add-user">Add User</a></li>
+                <li><a href="#users-report">Users Report</a></li>
+                <li><a href="#add-marks">Add Marks</a></li>
+            </ul>
+            <div class="text-white/90 text-xs sm:text-sm font-semibold whitespace-nowrap">
+                <span id="userDisplay">User</span> | <a class="hover:underline" href="#" id="logoutBtn">Logout</a>
+            </div>
+        </nav>
+        <div id="pages-container" class="flex-grow">
+            <main id="page-dashboard" class="mx-auto max-w-5xl w-[95%] mt-6 mb-10 bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                 <h2 class="text-center font-semibold text-white/90 mb-6 text-sm sm:text-base">Select your Option</h2>
+                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-center text-xs sm:text-sm text-white/80">
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#add-student"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#8b5cf6"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#7c3aed"/></svg></span> Add Student</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#student-report"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#60a5fa"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#3b82f6"/></svg></span> Student Report</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#add-subjects"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#ec4899"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#d946ef"/></svg></span> Add Subjects</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#subject-report"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#a78bfa"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#8b5cf6"/></svg></span> Subject Report</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#add-user"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#3b82f6"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#2563eb"/></svg></span> Add new user</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#users-report"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#d946ef"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#c026d3"/></svg></span> Users Report</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#add-marks"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#c4b5fd"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#a78bfa"/></svg></span> Add Marks</div></a>
+                    <a class="p-0.5 flex flex-col items-center justify-center bg-white/10 hover:bg-white/20 dashboard-btn" href="#result-analysis"><div><span class="mb-2 block dashboard-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="8" ry="8" fill="#93c5fd"/><rect x="12" y="20" width="16" height="14" rx="7" fill="#60a5fa"/></svg></span> Result Analysis</div></a>
+                </div>
+            </main>
+            <!-- Other pages will be injected here -->
+             <main id="page-add-student" style="display: none;" class="flex flex-col items-center justify-center flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><form id="addStudentForm" class="page-content w-full max-w-md" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-center">Add Student</h2><input id="studentName" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Student Name" type="text" required /><input id="studentRoll" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Roll Number" type="text" required /><input id="studentClass" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Class" type="text" required /><input id="studentDOB" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Date of Birth" type="date" required /><select id="studentGender" class="text-xs px-2 py-1 mb-3 w-full rounded" required><option value="">Select Gender</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select><button class="text-white text-xs font-semibold py-2 px-4 rounded w-full" type="submit">Add Student</button><div id="addStudentMsg" class="text-green-400 text-xs mt-2 text-center"></div></form></main>
+             <main id="page-student-report" style="display: none;" class="flex flex-col items-center justify-start flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><div class="page-content bg-white bg-opacity-90 border border-gray-300 p-6 rounded w-full max-w-2xl text-center" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-black">Student Report</h2><table id="studentTable" class="w-full text-xs border-collapse"><thead><tr class="bg-gray-100"><th class="border px-2 py-1">Name</th><th class="border px-2 py-1">Roll Number</th><th class="border px-2 py-1">Class</th><th class="border px-2 py-1">DOB</th><th class="border px-2 py-1">Gender</th></tr></thead><tbody></tbody></table><div id="noStudents" class="text-gray-500 mt-2"></div></div></main>
+             <main id="page-add-subjects" style="display: none;" class="flex flex-col items-center justify-center flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><form id="addSubjectForm" class="page-content w-full max-w-md" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-center">Add Subject</h2><input id="subjectName" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Subject Name" type="text" required /><input id="subjectCode" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Subject Code" type="text" required /><select id="subjectType" class="text-xs px-2 py-1 mb-3 w-full rounded" required><option value="">Select Type</option><option value="Theory">Theory</option><option value="Practical">Practical</option><option value="Lab">Lab</option></select><button class="text-white text-xs font-semibold py-2 px-4 rounded w-full" type="submit">Add Subject</button><div id="addSubjectMsg" class="text-green-400 text-xs mt-2 text-center"></div></form></main>
+             <main id="page-subject-report" style="display: none;" class="flex flex-col items-center justify-start flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><div class="page-content bg-white bg-opacity-90 border border-gray-300 p-6 rounded w-full max-w-md text-center" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-black">Subject Report</h2><table id="subjectTable" class="w-full text-xs border-collapse"><thead><tr class="bg-gray-100"><th class="border px-2 py-1">Name</th><th class="border px-2 py-1">Code</th><th class="border px-2 py-1">Type</th></tr></thead><tbody></tbody></table><div id="noSubjects" class="text-gray-500 mt-2"></div></div></main>
+             <main id="page-add-user" style="display: none;" class="flex flex-col items-center justify-center flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><form id="addUserForm" class="page-content w-full max-w-md" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-center">Add User</h2><input id="userName" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="User Name" type="text" required /><input id="userEmail" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Email" type="email" required /><select id="userRole" class="text-xs px-2 py-1 mb-3 w-full rounded" required><option value="">Select Role</option><option value="Admin">Admin</option><option value="Teacher">Teacher</option><option value="Student">Student</option></select><button class="text-white text-xs font-semibold py-2 px-4 rounded w-full" type="submit">Add User</button><div id="addUserMsg" class="text-green-400 text-xs mt-2 text-center"></div></form></main>
+             <main id="page-users-report" style="display: none;" class="flex flex-col items-center justify-start flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><div class="page-content bg-white bg-opacity-90 border border-gray-300 p-6 rounded w-full max-w-md text-center" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-black">Users Report</h2><table id="usersTable" class="w-full text-xs border-collapse"><thead><tr class="bg-gray-100"><th class="border px-2 py-1">Name</th><th class="border px-2 py-1">Email</th><th class="border px-2 py-1">Role</th></tr></thead><tbody></tbody></table><div id="noUsers" class="text-gray-500 mt-2"></div></div></main>
+             <main id="page-add-marks" style="display: none;" class="flex flex-col items-center justify-center flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><form id="addMarksForm" class="page-content w-full max-w-md" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-center">Add Marks</h2><select id="marksRoll" class="text-xs px-2 py-1 mb-3 w-full rounded" required><option value="">Select Student</option></select><input id="marksSubject" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Subject Code" type="text" required /><input id="marksValue" class="text-xs px-2 py-1 mb-3 w-full rounded" placeholder="Marks" type="number" required /><button class="text-white text-xs font-semibold py-2 px-4 rounded w-full" type="submit">Add Marks</button><div id="addMarksMsg" class="text-green-400 text-xs mt-2 text-center"></div></form></main>
+             <main id="page-result-analysis" style="display: none;" class="flex flex-col items-center justify-start flex-grow max-w-3xl mx-auto mt-10 px-4 w-full"><div class="page-content bg-white bg-opacity-90 border border-gray-300 p-6 rounded w-full max-w-md text-center" style="font-family: serif;"><h2 class="text-xl font-semibold mb-4 text-black">Result Analysis</h2><table id="marksTable" class="w-full text-xs border-collapse"><thead><tr class="bg-gray-100"><th class="border px-2 py-1">Roll Number</th><th class="border px-2 py-1">Subject</th><th class="border px-2 py-1">Marks</th></tr></thead><tbody></tbody></table><div id="noMarks" class="text-gray-500 mt-2"></div></div></main>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // --- Use the provided Firebase config ---
+        const firebaseConfig = typeof __firebase_config !== 'undefined'
+            ? JSON.parse(__firebase_config)
+            : {
+                apiKey: "YOUR_API_KEY",
+                authDomain: "YOUR_PROJECT.firebaseapp.com",
+                projectId: "YOUR_PROJECT_ID",
+                storageBucket: "YOUR_PROJECT.appspot.com",
+                messagingSenderId: "YOUR_SENDER_ID",
+                appId: "YOUR_APP_ID"
+              };
+              
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Authenticate with Firebase to enable Firestore access
+        const authenticate = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                    console.log("Signed in with custom token.");
+                } else {
+                    await signInAnonymously(auth);
+                    console.log("Signed in anonymously.");
+                }
+            } catch (error) {
+                console.error("Firebase authentication failed:", error);
+                showMessage("Could not connect to the database. Please check your internet connection and try again.", true);
+            }
+        };
+
+        // --- DOM ELEMENTS ---
+        const loginSection = document.getElementById('login-section');
+        const dashboardSection = document.getElementById('dashboard-section');
+        const authContainer = document.getElementById('auth-container');
+        const userDisplay = document.getElementById('userDisplay');
         
-        <!-- Left image -->
-        <div class="hidden md:block flex-shrink-0">
-            <img alt="3D illustration of data analysis with graphs and charts" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/0b89d541-438d-49d2-fa21-6cba80db6bd7.jpg">
-        </div>
+        let dashboard3DInitialized = false;
 
-        <!-- Sign In/Create Account Box -->
-        <div id="auth-container" class="form-container rounded-2xl p-8 w-full max-w-sm">
-            <!-- Login Form will be injected here by default -->
-        </div>
-
-        <!-- Right image -->
-        <div class="hidden md:block flex-shrink-0">
-            <img alt="3D illustration of a colorful pie chart" class="w-72 h-72 lg:w-96 lg:h-96 object-contain floating-img" src="https://storage.googleapis.com/a1aa/image/21d6b65a-ff0a-43b1-7c3f-446a208391bf.jpg">
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-4 z-10">
-        <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
-            <nav class="inline-flex gap-6">
-                <a class="hover:text-white transition-colors" href="#">Home</a>
-                <a class="hover:text-white transition-colors" href="#">About Us</a>
-                <a class="hover:text-white transition-colors" href="#">Contact</a>
-            </nav>
-            <p class="mt-2">&copy; 2025 Result Analysis System. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const authContainer = document.getElementById('auth-container');
-
-            // --- USER DATA MANAGEMENT ---
-            const demoUsers = [
-                { username: 'hod', password: 'hod123', role: 'hod', name: 'Dr. Smith', email: 'hod@example.com' },
-                { username: 'staff', password: 'staff123', role: 'staff', name: 'Prof. Jones', email: 'staff@example.com' }
-            ];
-
-            if (!localStorage.getItem('users')) {
-                localStorage.setItem('users', JSON.stringify(demoUsers));
-            }
-
-            function getUsers() {
-                return JSON.parse(localStorage.getItem('users')) || [];
-            }
-
-            function saveUser(user) {
-                const users = getUsers();
-                users.push(user);
-                localStorage.setItem('users', JSON.stringify(users));
-            }
+        // --- AUTHENTICATION & UI TOGGLING ---
+        function showDashboard(user) {
+            loginSection.style.display = 'none';
+            dashboardSection.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
             
-            // --- UI TEMPLATES ---
+            try {
+                 userDisplay.textContent = user.name || user.email || user.username || 'User';
+            } catch {
+                userDisplay.textContent = user;
+            }
 
-            const loginFormHTML = `
+            if (!dashboard3DInitialized) {
+                init3DBackground();
+                dashboard3DInitialized = true;
+            }
+            // Trigger initial dashboard view
+            handleNavigation(); 
+        }
+
+        function showLogin() {
+            loginSection.style.display = 'flex';
+            dashboardSection.style.display = 'none';
+            document.body.style.overflowX = 'hidden'; 
+            document.body.style.overflowY = 'auto';
+            showLoginForm();
+        }
+
+        document.getElementById('logoutBtn').onclick = function(e) {
+            e.preventDefault();
+            localStorage.removeItem('loggedInUser');
+            showLogin();
+            window.location.hash = ''; // Clear hash on logout
+        };
+
+        // --- USER DATA MANAGEMENT (from index.html) ---
+        const demoUsers = [
+            { username: 'hod', password: 'hod123', role: 'hod', name: 'Dr. Smith', email: 'hod@example.com' },
+            { username: 'staff', password: 'staff123', role: 'staff', name: 'Prof. Jones', email: 'staff@example.com' }
+        ];
+
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify(demoUsers));
+        }
+        function getUsers() { return JSON.parse(localStorage.getItem('users')) || []; }
+        function saveUser(user) {
+            const users = getUsers();
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // --- UI TEMPLATES (from index.html) ---
+        const loginFormHTML = `...`; // Content is long, will be handled by functions
+        const createAccountFormHTML = `...`;
+
+        function showLoginForm() {
+            authContainer.innerHTML = `
                 <form id="login-form" class="flex flex-col gap-4">
                     <h2 class="text-center font-bold text-2xl mb-4">Sign In</h2>
                     <div class="text-center font-semibold mb-2">
                         <span class="mr-4">Login As:</span>
-                        <label class="inline-flex items-center">
-                            <input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="hod" checked required />
-                            <span class="ml-2">HOD</span>
-                        </label>
-                        <label class="inline-flex items-center ml-4">
-                            <input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="staff" required />
-                            <span class="ml-2">Staff</span>
-                        </label>
+                        <label class="inline-flex items-center"><input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="hod" checked required /><span class="ml-2">HOD</span></label>
+                        <label class="inline-flex items-center ml-4"><input class="form-radio bg-transparent text-purple-400" name="loginAs" type="radio" value="staff" required /><span class="ml-2">Staff</span></label>
                     </div>
                     <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Enter username" type="text" required />
                     <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Enter password" type="password" required />
                     <button class="custom-btn text-white font-bold py-2 px-4 rounded-lg mt-2" type="submit">Login</button>
-                    <p class="text-center text-xs mt-2 text-gray-300">
-                        Don't have an account? <a href="#" id="show-create-account" class="font-semibold text-purple-300 hover:underline">Create one</a>
-                    </p>
-                </form>
-            `;
+                    <p class="text-center text-xs mt-2 text-gray-300">Don't have an account? <a href="#" id="show-create-account" class="font-semibold text-purple-300 hover:underline">Create one</a></p>
+                </form>`;
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('show-create-account').addEventListener('click', (e) => { e.preventDefault(); showCreateAccountForm(); });
+        }
 
-            const createAccountFormHTML = `
+        function showCreateAccountForm() {
+            authContainer.innerHTML = `
                 <form id="create-account-form" class="flex flex-col gap-3">
                     <h2 class="text-center font-bold text-2xl mb-2">Create Account</h2>
                     <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Username" type="text" required />
@@ -224,110 +402,165 @@
                     <input class="custom-input rounded-lg px-4 py-2 text-sm placeholder-gray-400 text-white" placeholder="Email Address" type="email" required />
                     <div class="text-center font-semibold my-1">
                         <span class="mr-4">Register As:</span>
-                        <label class="inline-flex items-center">
-                            <input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="hod" required />
-                            <span class="ml-2">HOD</span>
-                        </label>
-                        <label class="inline-flex items-center ml-4">
-                            <input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="staff" required />
-                            <span class="ml-2">Staff</span>
-                        </label>
+                        <label class="inline-flex items-center"><input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="hod" required /><span class="ml-2">HOD</span></label>
+                        <label class="inline-flex items-center ml-4"><input class="form-radio bg-transparent text-purple-400" name="registerAs" type="radio" value="staff" required /><span class="ml-2">Staff</span></label>
                     </div>
                     <button class="custom-btn text-white font-bold py-2 px-4 rounded-lg mt-2" type="submit">Create Account</button>
-                    <p class="text-center text-xs mt-2 text-gray-300">
-                        Already have an account? <a href="#" id="show-login" class="font-semibold text-purple-300 hover:underline">Sign In</a>
-                    </p>
-                </form>
-            `;
-            
-            // --- UI LOGIC ---
+                    <p class="text-center text-xs mt-2 text-gray-300">Already have an account? <a href="#" id="show-login" class="font-semibold text-purple-300 hover:underline">Sign In</a></p>
+                </form>`;
+            document.getElementById('create-account-form').addEventListener('submit', handleCreateAccount);
+            document.getElementById('show-login').addEventListener('click', (e) => { e.preventDefault(); showLoginForm(); });
+        }
+        
+        function showMessage(message, isError = false) {
+            const messageBox = document.createElement('div');
+            messageBox.textContent = message;
+            messageBox.className = `fixed top-5 right-5 p-4 rounded-lg text-white z-50 ${isError ? 'bg-red-500' : 'bg-green-500'}`;
+            document.body.appendChild(messageBox);
+            setTimeout(() => {
+                messageBox.style.transition = 'opacity 0.5s';
+                messageBox.style.opacity = '0';
+                setTimeout(() => messageBox.remove(), 500);
+            }, 3000);
+        }
 
-            function showLoginForm() {
-                authContainer.innerHTML = loginFormHTML;
-                document.getElementById('login-form').addEventListener('submit', handleLogin);
-                document.getElementById('show-create-account').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showCreateAccountForm();
-                });
+        function handleLogin(e) {
+            e.preventDefault();
+            const form = e.target;
+            const username = form.querySelector('input[type="text"]').value.trim();
+            const password = form.querySelector('input[type="password"]').value;
+            const role = form.querySelector('input[name="loginAs"]:checked').value;
+            const users = getUsers();
+            const user = users.find(u => u.username === username && u.password === password && u.role === role);
+
+            if (user) {
+                showMessage('Login successful! Welcome.');
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                showDashboard(user);
+            } else {
+                showMessage('Unauthorized: Invalid credentials or role.', true);
             }
+        }
 
-            function showCreateAccountForm() {
-                authContainer.innerHTML = createAccountFormHTML;
-                document.getElementById('create-account-form').addEventListener('submit', handleCreateAccount);
-                document.getElementById('show-login').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showLoginForm();
-                });
+        function handleCreateAccount(e) {
+            e.preventDefault();
+            const form = e.target;
+            const username = form.querySelector('input[placeholder="Username"]').value.trim();
+            const password = form.querySelector('input[type="password"]').value;
+            const name = form.querySelector('input[placeholder="Full Name"]').value.trim();
+            const email = form.querySelector('input[type="email"]').value.trim();
+            if (!form.querySelector('input[name="registerAs"]:checked')) {
+                showMessage('Please select a role to register as.', true); return;
             }
-
-            // --- EVENT HANDLERS ---
-            function showMessage(message, isError = false) {
-                // A simple, non-blocking message display
-                const messageBox = document.createElement('div');
-                messageBox.textContent = message;
-                messageBox.className = `fixed top-5 right-5 p-4 rounded-lg text-white z-50 ${isError ? 'bg-red-500' : 'bg-green-500'}`;
-                document.body.appendChild(messageBox);
-                setTimeout(() => {
-                    messageBox.style.transition = 'opacity 0.5s';
-                    messageBox.style.opacity = '0';
-                    setTimeout(() => messageBox.remove(), 500);
-                }, 3000);
+            const role = form.querySelector('input[name="registerAs"]:checked').value;
+            if (!username || !password || !name || !email || !role) {
+                showMessage('Please fill all fields.', true); return;
             }
-
-
-            function handleLogin(e) {
-                e.preventDefault();
-                const form = e.target;
-                const username = form.querySelector('input[type="text"]').value.trim();
-                const password = form.querySelector('input[type="password"]').value;
-                const role = form.querySelector('input[name="loginAs"]:checked').value;
-                const users = getUsers();
-                const user = users.find(u => u.username === username && u.password === password && u.role === role);
-
-                if (user) {
-                    showMessage('Login successful! Redirecting...');
-                    window.location.href = 'another_codes/dashboard.html';
-                    // In a real app, you'd redirect. We'll just show a message here.
-                    // window.location.href = 'dashboard.html';
-                } else {
-                    showMessage('Unauthorized: Invalid credentials or role.', true);
-                }
+            if (getUsers().some(u => u.username === username)) {
+                showMessage('Username already exists. Please choose another.', true); return;
             }
-
-            function handleCreateAccount(e) {
-                e.preventDefault();
-                const form = e.target;
-                const username = form.querySelector('input[placeholder="Username"]').value.trim();
-                const password = form.querySelector('input[type="password"]').value;
-                const name = form.querySelector('input[placeholder="Full Name"]').value.trim();
-                const email = form.querySelector('input[type="email"]').value.trim();
-                
-                if (!form.querySelector('input[name="registerAs"]:checked')) {
-                    showMessage('Please select a role to register as.', true);
-                    return;
-                }
-                const role = form.querySelector('input[name="registerAs"]:checked').value;
-
-                if (!username || !password || !name || !email || !role) {
-                    showMessage('Please fill all fields.', true);
-                    return;
-                }
-
-                if (getUsers().some(u => u.username === username)) {
-                    showMessage('Username already exists. Please choose another.', true);
-                    return;
-                }
-
-                saveUser({ username, password, name, email, role });
-                showMessage('Account created successfully! You can now log in.');
-                showLoginForm();
-            }
-
-            // --- INITIALIZE VIEW ---
+            saveUser({ username, password, name, email, role });
+            showMessage('Account created successfully! You can now log in.');
             showLoginForm();
+        }
 
+        // --- DASHBOARD 3D BACKGROUND (from dashboard.html) ---
+        let scene, camera, renderer, stars, starGeo, mouseX = 0, mouseY = 0, clock;
+        function init3DBackground() {
+            clock = new THREE.Clock();
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 5;
+            renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("bg-canvas"), alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            starGeo = new THREE.BufferGeometry();
+            const starVertices = [];
+            for (let i = 0; i < 10000; i++) {
+                starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            let sprite = new THREE.TextureLoader().load('https://placehold.co/10x10/ffffff/ffffff.png?text=+');
+            let starMaterial = new THREE.PointsMaterial({ color: 0x87CEEB, size: 1.5, map: sprite, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+            stars = new THREE.Points(starGeo, starMaterial);
+            scene.add(stars);
+            window.addEventListener("resize", () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }, false);
+            document.addEventListener("mousemove", (event) => {
+                 mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                 mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            }, false);
+            animate3DBackground();
+        }
+        function animate3DBackground() {
+            requestAnimationFrame(animate3DBackground);
+            if (!dashboardSection || dashboardSection.style.display === 'none') return; // Stop rendering if not visible
+            const elapsedTime = clock.getElapsedTime();
+            stars.position.y = Math.sin(elapsedTime * 0.1) * 2;
+            stars.rotation.y += (mouseX * 0.1 - stars.rotation.y) * 0.02;
+            stars.rotation.x += (mouseY * 0.1 - stars.rotation.x) * 0.02;
+            stars.position.z += 0.2;
+            if (stars.position.z > 1000) stars.position.z = -1000;
+            renderer.render(scene, camera);
+        }
+
+        // --- DASHBOARD DATA & NAVIGATION LOGIC (from dashboard.html) ---
+        // Add Student, Subject, User, Marks forms submission
+        document.getElementById('addStudentForm').onsubmit = async function(e){ e.preventDefault(); try { await addDoc(collection(db, "students"), { name: studentName.value, roll: studentRoll.value, class: studentClass.value, dob: studentDOB.value, gender: studentGender.value }); addStudentMsg.textContent = 'Student added!'; this.reset(); setTimeout(()=>addStudentMsg.textContent='',2000); } catch (err) { console.error(err); addStudentMsg.textContent='Error.'; } };
+        document.getElementById('addSubjectForm').onsubmit = async function(e){ e.preventDefault(); try { await addDoc(collection(db, "subjects"), { name: subjectName.value, code: subjectCode.value, type: subjectType.value }); addSubjectMsg.textContent = 'Subject added!'; this.reset(); setTimeout(()=>addSubjectMsg.textContent='',2000); } catch (err) { console.error(err); addSubjectMsg.textContent='Error.'; } };
+        document.getElementById('addUserForm').onsubmit = async function(e){ e.preventDefault(); try { await addDoc(collection(db, "users"), { name: userName.value, email: userEmail.value, role: userRole.value }); addUserMsg.textContent = 'User added!'; this.reset(); setTimeout(()=>addUserMsg.textContent='',2000); } catch (err) { console.error(err); addUserMsg.textContent='Error.'; } };
+        document.getElementById('addMarksForm').onsubmit = async function(e){ e.preventDefault(); try { await addDoc(collection(db, "marks"), { roll: marksRoll.value, subject: marksSubject.value, marks: marksValue.value }); addMarksMsg.textContent = 'Marks added!'; this.reset(); setTimeout(()=>addMarksMsg.textContent='',2000); } catch (err) { console.error(err); addMarksMsg.textContent='Error.'; } };
+
+        function populateStudents() { onSnapshot(collection(db, "students"), (snap) => { marksRoll.innerHTML = '<option value="">Select Student</option>'; snap.forEach(doc => { const s = doc.data(); marksRoll.innerHTML += `<option value="${s.roll}">${s.name} (${s.roll})</option>`; }); }); }
+        
+        // Report loading functions
+        function loadStudents() { onSnapshot(collection(db, "students"), (snap) => { const tbody = document.querySelector('#studentTable tbody'); tbody.innerHTML = ''; snap.forEach(doc => { const s = doc.data(); tbody.innerHTML += `<tr><td class="border px-2 py-1">${s.name}</td><td class="border px-2 py-1">${s.roll}</td><td class="border px-2 py-1">${s.class}</td><td class="border px-2 py-1">${s.dob}</td><td class="border px-2 py-1">${s.gender}</td></tr>`; }); noStudents.textContent = snap.empty ? 'No students.' : ''; }); }
+        function loadSubjects() { onSnapshot(collection(db, "subjects"), (snap) => { const tbody = document.querySelector('#subjectTable tbody'); tbody.innerHTML = ''; snap.forEach(doc => { const s = doc.data(); tbody.innerHTML += `<tr><td class="border px-2 py-1">${s.name}</td><td class="border px-2 py-1">${s.code}</td><td class="border px-2 py-1">${s.type}</td></tr>`; }); noSubjects.textContent = snap.empty ? 'No subjects.' : ''; }); }
+        function loadUsers() { onSnapshot(collection(db, "users"), (snap) => { const tbody = document.querySelector('#usersTable tbody'); tbody.innerHTML = ''; snap.forEach(doc => { const u = doc.data(); tbody.innerHTML += `<tr><td class="border px-2 py-1">${u.name}</td><td class="border px-2 py-1">${u.email}</td><td class="border px-2 py-1">${u.role}</td></tr>`; }); noUsers.textContent = snap.empty ? 'No users.' : ''; }); }
+        function loadMarks() { onSnapshot(collection(db, "marks"), (snap) => { const tbody = document.querySelector('#marksTable tbody'); tbody.innerHTML = ''; snap.forEach(doc => { const m = doc.data(); tbody.innerHTML += `<tr><td class="border px-2 py-1">${m.roll}</td><td class="border px-2 py-1">${m.subject}</td><td class="border px-2 py-1">${m.marks}</td></tr>`; }); noMarks.textContent = snap.empty ? 'No marks.' : ''; }); }
+
+        // SPA Navigation
+        const allPages = document.querySelectorAll('#pages-container > main');
+        const navLinks = document.querySelectorAll('nav a');
+        function showPage(targetPageId) {
+            allPages.forEach(page => { page.style.display = 'none'; });
+            const pageToShow = document.getElementById(targetPageId);
+            navLinks.forEach(link => link.classList.remove('active', 'text-pink-400', 'font-bold', 'underline'));
+            const activeLink = document.querySelector(`nav a[href="#${targetPageId.replace('page-', '')}"]`);
+            if (activeLink) activeLink.classList.add('active', 'text-pink-400', 'font-bold', 'underline');
+            
+            if (pageToShow) {
+                pageToShow.style.display = (targetPageId === 'page-dashboard') ? 'block' : 'flex';
+                if (targetPageId === 'page-add-marks') populateStudents();
+                document.body.style.overflow = (targetPageId === 'page-dashboard') ? 'hidden' : 'auto';
+            } else {
+                document.getElementById('page-dashboard').style.display = 'block';
+            }
+        }
+        function handleNavigation() { const pageId = window.location.hash.substring(1) || 'dashboard'; showPage(`page-${pageId}`); }
+        
+        // --- APP INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            await authenticate(); // Ensure we are authenticated before doing anything else
+
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                try {
+                    showDashboard(JSON.parse(loggedInUser));
+                } catch {
+                    showLogin();
+                }
+            } else {
+                showLogin();
+            }
+
+            // Initialize dashboard functionality
+            loadStudents(); loadSubjects(); loadUsers(); loadMarks();
+            window.addEventListener('hashchange', handleNavigation);
         });
     </script>
 </body>
-
 </html>
+
